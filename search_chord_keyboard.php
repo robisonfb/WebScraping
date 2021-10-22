@@ -48,7 +48,7 @@ foreach ($combination as $key => $combination_2){
 
 $result = array_merge((array)$notes, (array)$final);
 
-$url = "https://www.e-chords.com/site/chords2.asp?type=&method=1&chord=";
+$url = "https://www.e-chords.com/site/chords2.asp?type=keyboard&method=1&chord=";
 
 $cont = 0;
 foreach ($result as $note){
@@ -57,11 +57,11 @@ foreach ($result as $note){
     $results = get_contents($url_get);
 
     if(count($results[0]) <= 0){
-        save_file("errors/","errors_chord_guitar.txt", $note."\r\n");
+        save_file("errors/","errors_chord_keyboard.txt", $note."\r\n");
     }else{
         foreach ($results[0] as $result){
             $cont++;
-            $return = "'{$note}','chord{$cont}','{$result}','guitar'";
+            $return = "'{$note}','chord{$cont}','{$result}','keyboard'";
             sqlInsert($return);
             echo "running... \r\n";
         }
